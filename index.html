@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvar Contatos dos Administradores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .instrucoes {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            opacity: 0.95;
+        }
+        
+        .instrucoes strong {
+            font-weight: 600;
+        }
+        
+        .contato-card {
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contato-card:hover {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: rgba(46, 204, 113, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .contato-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .contato-info p {
+            font-size: 15px;
+            opacity: 0.85;
+        }
+        
+        .contato-acoes {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-salvar {
+            background: #2ecc71;
+            color: #ffffff;
+        }
+        
+        .btn-salvar:hover {
+            background: #27ae60;
+            transform: scale(1.05);
+        }
+        
+        .bonus {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+            border: 2px solid rgba(255, 193, 7, 0.4);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .bonus h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #ffd54f;
+            font-weight: 600;
+        }
+        
+        .bonus p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .bonus p:last-child {
+            margin-bottom: 0;
+            font-size: 18px;
+            color: #ffd54f;
+        }
+        
+        .bonus strong {
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            
+            .contato-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .contato-acoes {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .btn {
+                font-size: 14px;
+                padding: 8px 20px;
+            }
+            
+            .bonus h3 {
+                font-size: 20px;
+            }
+            
+            .bonus p {
+                font-size: 15px;
+            }
+            
+            .bonus p:last-child {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Salvar Contatos dos Administradores</h1>
+        <p class="instrucoes">
+            Toque em <strong>Salvar</strong> para adicionar todos os contatos à sua agenda. Todos os números serão salvos em um único contato.
+        </p>
+        
+        <div class="contato-card">
+            <div class="contato-info">
+                <h3>Salvar Todos os Contatos</h3>
+                <p>Celular, Trabalho e Casa em um único contato</p>
+            </div>
+            <div class="contato-acoes">
+                <button class="btn btn-salvar" onclick="downloadVCard()">Salvar Contato</button>
+            </div>
+        </div>
+        
+        <div class="bonus">
+            <h3>🎁 Ganhe seu Bônus Secreto!</h3>
+            <p>Após salvar o contato, tire um <strong>print da tela</strong> mostrando o contato salvo na sua agenda e envie para um dos números.</p>
+            <p><strong>Você receberá um bônus exclusivo!</strong></p>
+        </div>
+        
+        <div style="margin-top: 20px; font-size: 13px; opacity: 0.7; text-align: center;">
+            Dispositivo detectado: <span id="dispositivo">Detectando...</span>
+        </div>
+    </div>
+
+    <script>
+        // Configuração dos contatos
+        const contatos = [
+            {
+                nome: 'Fictício (Celular)',
+                telefone: '+55 (77) 99633-6699',
+                tipo: 'Celular'
+            },
+            {
+                nome: 'Fictício (Trabalho)',
+                telefone: '+55 (34) 99698-5221',
+                tipo: 'Trabalho'
+            },
+            {
+                nome: 'Fictício (Casa)',
+                telefone: '+55 (34) 99663-2363',
+                tipo: 'Casa'
+            }
+        ];
+
+        // Detectar dispositivo
+        function detectarDispositivo() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return 'iOS';
+            } else if (/android/i.test(userAgent)) {
+                return 'Android';
+            }
+            
+            return 'Desktop';
+        }
+
+        // Exibir dispositivo detectado
+        document.getElementById('dispositivo').textContent = detectarDispositivo();
+
+        // Normalizar telefone
+        function normalizarTelefone(telefone) {
+            return telefone.replace(/[^0-9+]/g, '');
+        }
+
+        // Gerar vCard com todos os contatos
+        function gerarVCard() {
+            let vcard = "BEGIN:VCARD\r\n";
+            vcard += "VERSION:3.0\r\n";
+            
+            // Nome principal (sem o texto entre parênteses)
+            const nomePrincipal = contatos[0].nome.replace(/\s*\([^)]*\)/, '');
+            vcard += "FN:" + nomePrincipal + "\r\n";
+            vcard += "N:;" + nomePrincipal + ";;;\r\n";
+            
+            // Adicionar todos os telefones
+            contatos.forEach(contato => {
+                const telefoneNormalizado = normalizarTelefone(contato.telefone);
+                
+                if (contato.tipo === 'Celular') {
+                    vcard += "TEL;TYPE=CELL:" + telefoneNormalizado + "\r\n";
+                } else if (contato.tipo === 'Trabalho') {
+                    vcard += "TEL;TYPE=WORK:" + telefoneNormalizado + "\r\n";
+                } else if (contato.tipo === 'Casa') {
+                    vcard += "TEL;TYPE=HOME:" + telefoneNormalizado + "\r\n";
+                } else {
+                    vcard += "TEL:" + telefoneNormalizado + "\r\n";
+                }
+            });
+            
+            vcard += "END:VCARD\r\n";
+            
+            return vcard;
+        }
+
+        // Fazer download do vCard
+        function downloadVCard() {
+            const vcardContent = gerarVCard();
+            const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            
+            link.href = url;
+            link.download = 'contatos_administradores.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
+
