@@ -463,12 +463,12 @@
         // Fazer download do vCard (MANTIDA DO ORIGINAL)
         function downloadVCard() {
             const vcardContent = gerarVCard();
-            const blob = new Blob([vcardContent], { type: 'application/octet-stream' });
+            const blob = new Blob([vcardContent], { type: 'text/x-vcard;charset=utf-8' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             
             link.href = url;
-// link.download = 'contatos_administradores.vcf'; // Removido para tentar forçar o processamento em vez do download
+            link.download = 'contatos_administradores.vcf';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
