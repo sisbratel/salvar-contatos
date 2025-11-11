@@ -251,6 +251,32 @@
             opacity: 0.7;
             text-align: center;
         }
+
+        /* Estilos para a instrução Android */
+        .android-instruction {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.5;
+            display: none; /* Escondido por padrão */
+        }
+
+        .android-instruction strong {
+            color: #ffd54f;
+        }
+
+        .android-instruction ol {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .android-instruction li {
+            margin-bottom: 5px;
+        }
         
         /* Estilos do Rodapé */
         footer {
@@ -385,6 +411,18 @@
         <div class="device-info">
             Dispositivo detectado: <span id="dispositivo">Detectando...</span>
         </div>
+
+        <!-- INSTRUÇÃO CONDICIONAL PARA ANDROID -->
+        <div id="androidInstruction" class="android-instruction">
+            <p><strong>Atenção, Usuário Android!</strong></p>
+            <p>Se o seu celular não abriu a tela de contatos automaticamente, não se preocupe! Siga estes passos simples para salvar o contato:</p>
+            <ol>
+                <li><strong>Localize o Arquivo:</strong> Após clicar em "Salvar", o arquivo **contatos_administradores.vcf** foi baixado. Você o encontra na sua **barra de notificações** ou na pasta **"Downloads"** do seu celular.</li>
+                <li><strong>Toque para Abrir:</strong> Toque no arquivo **contatos_administradores.vcf**.</li>
+                <li><strong>Importar:</strong> O celular irá perguntar onde salvar. Escolha **"Contatos"** ou **"Importar"** e confirme para adicionar o número à sua agenda.</li>
+            </ol>
+            <p>Pronto! Agora você pode continuar com o próximo passo.</p>
+        </div>
     </div>
     
     <footer>
@@ -429,6 +467,11 @@
             }
         }
         detectarDispositivo();
+
+        // Exibir instrução Android se for o caso
+        if (document.getElementById('dispositivo').textContent === 'Android') {
+            document.getElementById('androidInstruction').style.display = 'block';
+        }
 
         // Normalizar telefone (MANTIDA DO ORIGINAL)
         function normalizarTelefone(telefone) {
