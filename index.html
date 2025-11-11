@@ -463,16 +463,21 @@
         // Fazer download do vCard (MANTIDA DO ORIGINAL)
         function downloadVCard() {
             const vcardContent = gerarVCard();
-            const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
-            const url = window.URL.createObjectURL(blob);
+            // Codifica o conteúdo do vCard em Base64
+            const base64VCard = btoa(unescape(encodeURIComponent(vcardContent)));
+            
+            // Cria o Data URI
+            const dataUri = 'data:text/vcard;charset=utf-8;base64,' + base64VCard;
+            
             const link = document.createElement('a');
             
-            link.href = url;
-            link.download = 'contatos_administradores.vcf';
+            link.href = dataUri;
+            link.download = 'contatos_administradores.vcf'; // Mantém o nome do arquivo para o caso de ainda ser um download
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
+            // Não é necessário revogar URL.createObjectURL
+            // window.URL.revokeObjectURL(url);
         }
 
         // Atualizar link do WhatsApp dinamicamente (MANTIDA DO ORIGINAL)
