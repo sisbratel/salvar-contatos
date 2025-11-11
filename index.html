@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -353,34 +353,39 @@
                 <p>O número principal para contato</p>
             </div>
             <div class="contato-acoes">
-                <button class="btn btn-salvar" onclick="downloadVCard()">Salvar Contato</button>
-            </div>
-        </div>
-        
-        <!-- VÍDEO RESPONSIVO -->
-        <div class="video-container" id="videoContainer">
-            <iframe id="videoPlayer" width="100%" height="100%" src="https://www.youtube.com/embed/UCaegKkINbg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&disablekb=1&playsinline=1&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div id="unmuteButton" class="unmute-button">
-                CLIQUE AQUI PARA ATIVAR O ÁUDIO
+                <button class="btn btn-salvar" onclick="downloadVCard()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                    </svg>
+                    Salvar
+                </button>
             </div>
         </div>
 
-        <!-- SEÇÃO DE BÔNUS COM BOTÃO WHATSAPP -->
+        <!-- VÍDEO -->
+        <div class="video-container">
+            <div id="unmuteButton" class="unmute-button">CLIQUE AQUI PARA ATIVAR O ÁUDIO</div>
+            <iframe id="videoPlayer" src="https://www.youtube.com/shorts/UCaegKkINbg?autoplay=1&mute=1&controls=0&modestbranding=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <!-- SEÇÃO DE BÔNUS -->
         <div class="bonus">
             <h3>🎁 Receba sua estratégia completa!</h3>
             <p>Após salvar o contato, tire um <strong>print da tela</strong> mostrando o contato salvo na sua agenda e envie para um dos números.</p>
             <p>Você receberá um bônus exclusivo!</p>
-            <a href="https://wa.me/5534996650723?text=Oi%2C%20gostaria%20de%20enviar%20o%20print%20do%20contato%20salvo%20para%20receber%20o%20b%C3%B4nus%20secreto!" target="_blank" class="btn-whatsapp" id="botaoWhatsApp">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.949c-1.238.503-2.335 1.236-3.356 2.192-1.048 1.007-1.954 2.14-2.668 3.426-.779 1.423-1.348 2.914-1.684 4.425-.5 2.236-.37 4.519.37 6.58 1.077 3.074 3.528 5.847 6.694 7.075 2.783 1.052 5.676 1.195 8.56.413 2.716-.713 5.300-2.475 7.061-4.910 1.856-2.628 2.595-5.653 2.096-8.664-.5-3.01-2.311-5.889-4.856-7.663-1.473-1.084-3.149-1.785-4.974-2.115-.628-.11-1.267-.163-1.906-.163z"/>
+            <a id="botaoWhatsApp" href="#" class="btn-whatsapp" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.5-7c-18.9-29.4-28.9-63.3-28.9-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
                 </svg>
                 Chamar no WhatsApp
             </a>
         </div>
-        
+
+        <!-- Dispositivo detectado -->
         <div class="device-info">
             Dispositivo detectado: <span id="dispositivo">Detectando...</span>
-        </div    </div>
+        </div>
+    </div>
     
     <footer>
         <div class="footer-content">
@@ -404,47 +409,41 @@
         // Configuração dos contatos (MANTIDA DO ORIGINAL)
         const contatos = [
             {
-                nome: 'Guilherme - Sisbratel',
-                telefone: '+55 (34) 99665-0723',
-                tipo: 'Celular'
+                nome: "Guilherme - Sisbratel",
+                telefone: "+5534996650723",
+                tipo: "Celular"
             }
         ];
 
-        // Detectar dispositivo (MANTIDA DO ORIGINAL)
+        // Detecção de dispositivo (MANTIDA DO ORIGINAL)
         function detectarDispositivo() {
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const dispositivoSpan = document.getElementById('dispositivo');
             
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return 'iOS';
-            } else if (/android/i.test(userAgent)) {
-                return 'Android';
+            if (/android/i.test(userAgent)) {
+                dispositivoSpan.textContent = 'Android';
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                dispositivoSpan.textContent = 'iOS';
+            } else {
+                dispositivoSpan.textContent = 'Desktop';
             }
-            
-            return 'Desktop';
         }
-
-        // Exibir dispositivo detectado (MANTIDA DO ORIGINAL)
-        document.getElementById('dispositivo').textContent = detectarDispositivo();
+        detectarDispositivo();
 
         // Normalizar telefone (MANTIDA DO ORIGINAL)
         function normalizarTelefone(telefone) {
-            return telefone.replace(/[^0-9+]/g, '');
+            return telefone.replace(/\D/g, '');
         }
 
-        // Gerar vCard com todos os contatos (MANTIDA DO ORIGINAL)
+        // Gerar vCard (MANTIDA DO ORIGINAL)
         function gerarVCard() {
-            let vcard = "BEGIN:VCARD\r\n";
-            vcard += "VERSION:3.0\r\n";
+            let vcard = 'BEGIN:VCARD\r\nVERSION:3.0\r\n';
             
-            // Nome principal (sem o texto entre parênteses)
-            const nomePrincipal = contatos[0].nome.replace(/\s*\([^)]*\)/, '');
-            vcard += "FN:" + nomePrincipal + "\r\n";
-            vcard += "N:;" + nomePrincipal + ";;;\r\n";
-            
-            // Adicionar todos os telefones
             contatos.forEach(contato => {
-                const telefoneNormalizado = normalizarTelefone(contato.telefone);
+                vcard += "N:" + contato.nome + ";;;\r\n";
+                vcard += "FN:" + contato.nome + "\r\n";
                 
+                const telefoneNormalizado = normalizarTelefone(contato.telefone);
                 if (contato.tipo === 'Celular') {
                     vcard += "TEL;TYPE=CELL:" + telefoneNormalizado + "\r\n";
                 } else if (contato.tipo === 'Trabalho') {
@@ -492,22 +491,6 @@
         // Atualizar link do WhatsApp quando a página é carregada
         atualizarLinkWhatsApp();
     </script>
-    <footer>
-        <div class="footer-content">
-            <p class="disclaimer">
-                Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook Inc. Os resultados podem variar.
-            </p>
-            <p class="links">
-                <a href="https://sisbratel.com/politica-de-privacidade" target="_blank">Política de Privacidade</a> |
-                <a href="https://sisbratel.com/termos-de-uso" target="_blank">Termos de Uso</a>
-            </p>
-            <p class="info">
-                © 2025 Sisbratel - Todos os direitos reservados.
-            </p>
-            <p class="info">
-                CNPJ: 56.305.777/0001-19
-            </p>
-        </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const unmuteButton = document.getElementById("unmuteButton");
@@ -544,3 +527,4 @@
     </script>
 </body>
 </html>
+'''
