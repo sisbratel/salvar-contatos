@@ -440,13 +440,21 @@
             if (unmuteButton && videoPlayer) {
                 unmuteButton.addEventListener('click', function() {
                     // 1. Envia mensagem para o iframe do YouTube para desmutar
-                    const message = JSON.stringify({
+                    const unmuteMessage = JSON.stringify({
                         event: 'command',
                         func: 'unMute'
                     });
-                    videoPlayer.contentWindow.postMessage(message, '*');
+                    videoPlayer.contentWindow.postMessage(unmuteMessage, '*');
                     
-                    // 2. O autoplay já está na URL, mas tentamos garantir o play (se necessário)
+                    // 2. Reinicia o vídeo para o início (0 segundos)
+                    const seekMessage = JSON.stringify({
+                        event: 'command',
+                        func: 'seekTo',
+                        args: [0, true] // O segundo argumento 'true' garante que o player seja pausado se estiver pausado, mas aqui queremos que ele continue rodando
+                    });
+                    videoPlayer.contentWindow.postMessage(seekMessage, '*');
+                    
+                    // 3. Garante que o vídeo está rodando (playVideo)
                     const playMessage = JSON.stringify({
                         event: 'command',
                         func: 'playVideo'
