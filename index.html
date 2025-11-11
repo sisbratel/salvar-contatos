@@ -252,6 +252,49 @@
             text-align: center;
         }
         
+        /* Estilos do Rodapé */
+        footer {
+            background: #1a2a4a;
+            color: #ffffff;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .footer-content p {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        
+        .footer-content a {
+            color: #2ecc71;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-content a:hover {
+            color: #27ae60;
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 15px !important;
+        }
+        
+        .links {
+            margin-bottom: 10px !important;
+        }
+        
         /* Media Queries */
         @media (max-width: 600px) {
             h1 {
@@ -337,9 +380,26 @@
         
         <div class="device-info">
             Dispositivo detectado: <span id="dispositivo">Detectando...</span>
+        </div    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="disclaimer">
+                Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook Inc. Os resultados podem variar.
+            </p>
+            <p class="links">
+                <a href="https://sisbratel.com/politica-de-privacidade" target="_blank">Política de Privacidade</a> |
+                <a href="https://sisbratel.com/termos-de-uso" target="_blank">Termos de Uso</a>
+            </p>
+            <p class="info">
+                © 2025 Sisbratel - Todos os direitos reservados.
+            </p>
+            <p class="info">
+                CNPJ: 56.305.777/0001-19
+            </p>
         </div>
-    </div>
-
+    </footer>
+    
     <script>
         // Configuração dos contatos (MANTIDA DO ORIGINAL)
         const contatos = [
@@ -432,36 +492,52 @@
         // Atualizar link do WhatsApp quando a página é carregada
         atualizarLinkWhatsApp();
     </script>
+    <footer>
+        <div class="footer-content">
+            <p class="disclaimer">
+                Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook Inc. Os resultados podem variar.
+            </p>
+            <p class="links">
+                <a href="https://sisbratel.com/politica-de-privacidade" target="_blank">Política de Privacidade</a> |
+                <a href="https://sisbratel.com/termos-de-uso" target="_blank">Termos de Uso</a>
+            </p>
+            <p class="info">
+                © 2025 Sisbratel - Todos os direitos reservados.
+            </p>
+            <p class="info">
+                CNPJ: 56.305.777/0001-19
+            </p>
+        </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const unmuteButton = document.getElementById('unmuteButton');
-            const videoPlayer = document.getElementById('videoPlayer');
+        document.addEventListener("DOMContentLoaded", function() {
+            const unmuteButton = document.getElementById("unmuteButton");
+            const videoPlayer = document.getElementById("videoPlayer");
 
             if (unmuteButton && videoPlayer) {
-                unmuteButton.addEventListener('click', function() {
+                unmuteButton.addEventListener("click", function() {
                     // 1. Envia mensagem para o iframe do YouTube para desmutar
                     const unmuteMessage = JSON.stringify({
-                        event: 'command',
-                        func: 'unMute'
+                        event: "command",
+                        func: "unMute"
                     });
-                    videoPlayer.contentWindow.postMessage(unmuteMessage, '*');
+                    videoPlayer.contentWindow.postMessage(unmuteMessage, "*");
                     
                     // 2. Reinicia o vídeo para o início (0 segundos)
                     const seekMessage = JSON.stringify({
-                        event: 'command',
-                        func: 'seekTo',
-                        args: [0, true] // O segundo argumento 'true' garante que o player seja pausado se estiver pausado, mas aqui queremos que ele continue rodando
+                        event: "command",
+                        func: "seekTo",
+                        args: [0, true] // O segundo argumento "true" garante que o player seja pausado se estiver pausado, mas aqui queremos que ele continue rodando
                     });
-                    videoPlayer.contentWindow.postMessage(seekMessage, '*');
+                    videoPlayer.contentWindow.postMessage(seekMessage, "*");
                     
                     // 3. Garante que o vídeo está rodando (playVideo)
                     const playMessage = JSON.stringify({
-                        event: 'command',
-                        func: 'playVideo'
+                        event: "command",
+                        func: "playVideo"
                     });
-                    videoPlayer.contentWindow.postMessage(playMessage, '*');
+                    videoPlayer.contentWindow.postMessage(playMessage, "*");
                     // 3. Esconde o botão
-                    unmuteButton.style.display = 'none';
+                    unmuteButton.style.display = "none";
                 });
             }
         });
