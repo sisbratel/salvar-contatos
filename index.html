@@ -316,7 +316,7 @@
         
         <!-- VÍDEO RESPONSIVO -->
         <div class="video-container" id="videoContainer">
-            <iframe id="videoPlayer" width="100%" height="100%" src="https://www.youtube.com/embed/UCaegKkINbg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&disablekb=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="videoPlayer" width="100%" height="100%" src="https://www.youtube.com/embed/UCaegKkINbg?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&disablekb=1&playsinline=1&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div id="unmuteButton" class="unmute-button">
                 CLIQUE AQUI PARA ATIVAR O ÁUDIO
             </div>
@@ -439,14 +439,14 @@
 
             if (unmuteButton && videoPlayer) {
                 unmuteButton.addEventListener('click', function() {
-                    // 1. Envia mensagem para o iframe do YouTube para desmutar e dar play
+                    // 1. Envia mensagem para o iframe do YouTube para desmutar
                     const message = JSON.stringify({
                         event: 'command',
                         func: 'unMute'
                     });
                     videoPlayer.contentWindow.postMessage(message, '*');
                     
-                    // O autoplay já está na URL, mas tentamos garantir o play
+                    // 2. O autoplay já está na URL, mas tentamos garantir o play (se necessário)
                     const playMessage = JSON.stringify({
                         event: 'command',
                         func: 'playVideo'
