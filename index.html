@@ -131,7 +131,7 @@
             margin: 0 auto;
             height: 0;
             overflow: hidden;
-            background: #000;
+            background: transparent; /* Alterado para transparente para mostrar o fundo da página */
             margin-bottom: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -181,10 +181,10 @@
         .video-container object,
         .video-container embed {
             position: absolute;
-            top: -5%; /* Move o iframe para cima para centralizar o corte */
+            top: 0;
             left: 0;
             width: 100%;
-            height: 110%; /* Aumenta a altura para transbordar e cortar as barras pretas */
+            height: 100%;
         }
 
         .video-placeholder {
